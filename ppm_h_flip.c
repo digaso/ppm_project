@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "pixel.h"
 
 void flip(IMAGE img, IMAGE newImg)
@@ -14,20 +13,9 @@ void flip(IMAGE img, IMAGE newImg)
 }
 int main(int argc, char const *argv[])
 {
-
-  int height = 0, width = 0;
-  int maxValue = 0;
-  char header[4];
-  FILE *file;
-  file = fopen(argv[1], "r+");
-  fscanf(file, "%s", header);
-  fscanf(file, "%d %d", &width, &height);
-  fscanf(file, "%d", &maxValue);
-  IMAGE img = setImage(header, height, width, maxValue);
-  IMAGE newImg = setImage(header, height, width, maxValue);
-  readImageFile(img, file);
+  IMAGE img = scanImage(argc, argv);
+  IMAGE newImg = setImage(img.magicNumber, img.height, img.width, img.maxValue);
   flip(img, newImg);
-  printImage(newImg);
-  fclose(file);
+  printImage(argc, argv, newImg);
   return 0;
 }
