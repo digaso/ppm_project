@@ -19,7 +19,8 @@ typedef struct
 IMAGE setImage(char *magicNumber, int height, int width, int maxValue)
 {
   IMAGE img;
-  img.magicNumber = magicNumber;
+  img.magicNumber = malloc(3);
+  strcpy(img.magicNumber, magicNumber);
   img.height = height;
   img.width = width;
   img.maxValue = maxValue;
