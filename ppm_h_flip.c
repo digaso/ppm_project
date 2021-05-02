@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pixel.h"
 
-void flip(IMAGE img, IMAGE newImg)
+void flipHorizontal(IMAGE img, IMAGE newImg)
 {
   for (int i = 0; i < img.height; i++)
   {
@@ -11,6 +11,7 @@ void flip(IMAGE img, IMAGE newImg)
     }
   }
 }
+
 int main(int argc, char const *argv[])
 {
   IMAGE img = scanImage(argc, argv);

@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 typedef struct
 {
@@ -40,6 +41,7 @@ PIXEL setPixel(int r, int g, int b)
   p.blue = b;
   return p;
 }
+
 void readImageFile(IMAGE img, FILE *file)
 {
   for (int i = 0; i < img.height; i++)
@@ -52,6 +54,7 @@ void readImageFile(IMAGE img, FILE *file)
     }
   }
 }
+
 void readImage(IMAGE img)
 {
   int r, g, b;
@@ -78,6 +81,7 @@ IMAGE readIO()
   readImage(img);
   return img;
 }
+
 IMAGE readFile(FILE *file)
 {
 
@@ -92,6 +96,7 @@ IMAGE readFile(FILE *file)
   return img;
     
 }
+
 IMAGE scanImage(int argc, char const *argv[])
 {
   FILE *file;
@@ -121,6 +126,7 @@ void printToFile(IMAGE img, FILE *file){
     }
   }
 }
+
 void printImageIO(IMAGE img)
 {
   printf("%s\n", img.magicNumber);
@@ -134,6 +140,7 @@ void printImageIO(IMAGE img)
     }
   }
 }
+
 void printImage(int argc, char const *argv[], IMAGE img){
   FILE *file;
   if(argc > 2){
