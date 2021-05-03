@@ -40,13 +40,13 @@ PIXEL changePixel(int r, int g, int b, PIXEL pixel, int maxValue)
 
   return setPixel(newR, newG, newB);
 }
-void addColor(int r, int g, int b, IMAGE img)
+void addColor(int r, int g, int b, IMAGE newImg, IMAGE img)
 {
   for (int i = 0; i < img.height; i++)
   {
     for (int j = 0; j < img.width; j++)
     {
-      img.matrix[j][i] = changePixel(r, g, b, img.matrix[j][i], img.maxValue);
+      newImg.matrix[j][i] = changePixel(r, g, b, img.matrix[j][i], img.maxValue);
     }
   }
 }
@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 
   IMAGE img = scanImage(3, argc, argv);
   IMAGE newImg = copyImage(img);
-  addColor(getAdditive(r), getAdditive(g), getAdditive(b), newImg);
+  addColor(getAdditive(r), getAdditive(g), getAdditive(b), newImg, img);
   printImage(3, argc, argv, newImg);
   return 0;
 }

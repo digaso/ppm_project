@@ -35,7 +35,6 @@ IMAGE setImage(char *magicNumber, int height, int width, int maxValue)
 
 IMAGE copyImage(IMAGE img){
   IMAGE newImg = setImage(img.magicNumber, img.height, img.width, img.maxValue);
-  newImg.matrix = img.matrix;
   return newImg;
 }
 
