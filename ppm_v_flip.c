@@ -14,9 +14,9 @@ void flipVertical(IMAGE img, IMAGE newImg)
 
 int main(int argc, char const *argv[])
 {
-  IMAGE img = scanImage(argc, argv);
-  IMAGE newImg = setImage(img.magicNumber, img.height, img.width, img.maxValue);
+  IMAGE img = scanImage(0, argc, argv);
+  IMAGE newImg = copyImage(img);
   flipVertical(img, newImg);
-  printImage(argc, argv, newImg);
+  printImage(0, argc, argv, newImg);
   return 0;
 }

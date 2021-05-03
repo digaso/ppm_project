@@ -33,6 +33,12 @@ IMAGE setImage(char *magicNumber, int height, int width, int maxValue)
   return img;
 }
 
+IMAGE copyImage(IMAGE img){
+  IMAGE newImg = setImage(img.magicNumber, img.height, img.width, img.maxValue);
+  newImg.matrix = img.matrix;
+  return newImg;
+}
+
 PIXEL setPixel(int r, int g, int b)
 {
   PIXEL p;
@@ -57,7 +63,6 @@ void readImageFile(IMAGE img, FILE *file)
 
 void readImage(IMAGE img)
 {
-  int r, g, b;
   for (int i = 0; i < img.height; i++)
   {
     for (int j = 0; j < img.width; j++)
@@ -97,13 +102,17 @@ IMAGE readFile(FILE *file)
     
 }
 
-IMAGE scanImage(int argc, char const *argv[])
+IMAGE scanImage(int argn, int argc, char const *argv[])
 {
   FILE *file;
   IMAGE img;
-  if (argc > 1)
+  if (argc > argn + 1)
   {
-    file = fopen(argv[1], "r+");
+    file = fopen(argv[argn + 1], "r+");
+    if(file == NULL){
+      perror("Error");
+      exit(1);
+    }
     img = readFile(file);
     fclose(file);
   }
@@ -141,10 +150,10 @@ void printImageIO(IMAGE img)
   }
 }
 
-void printImage(int argc, char const *argv[], IMAGE img){
+void printImage(int argn, int argc, char const *argv[], IMAGE img){
   FILE *file;
-  if(argc > 2){
-    file = fopen(argv[2], "w");
+  if(argc > argn + 2){
+    file = fopen(argv[argn + 2], "w");
     printToFile(img, file);
     fclose(file);
   }else{
